@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .backimg {
+        background-image: url("./images/background.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+      }
+      .middle {
+        text-align: center;
+      }
+      .middle-col {
+        color: white;
+        font-size: 50px;
+      }
+      .dice {
+        height: 250px;
+        margin-top: 100px;
+      }
+      .adjust {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+      .btn {
+        cursor: pointer;
+        background-color: rgb(163, 200, 232);
+        color: black;
+        margin: 10px;
+        padding: 5px 10px;
+        font-size: 20px;
+        border-radius: 10px;
+        border : 3px dashed black;
+        box-shadow: 0px 2px 8px 2px gray;
+      }
+      .btn:hover {
+        transform: scale(0.8);
+      }
+      .rotate {
+        animation: spin 0.5s ease;
+      }
+       @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @media screen and (max-width: 480px) {
+        .backimg {
+          height: 100vh;
+        }
+        .middle-col {
+          font-size: 30px;
+        }
+        .dice {
+          height: 150px;
+          margin-top: 80px;
+        }
+        .adjust {
+          gap: 10px;
+        }
+        .btn {
+          margin: 8px;
+          padding: 5px 8px;
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body class="backimg">
+    <h1 class="middle middle-col">
+      <span style="color: #cc3d2d">D</span>ice
+      <span style="color: #cc3d2d">R</span>oller
+    </h1>
+    <div class="middle adjust">
+      <img src="./images/dice6.svg" alt="dice" id="diceImg" class="dice" />
+      <button class="btn" onclick="rollDice()">Roll Dice</button>
+    </div>
+
+    <script>
+      let dicearray = [
+        "./images/dice1.svg",
+        "./images/dice2.svg",
+        "./images/dice3.svg",
+        "./images/dice4.svg",
+        "./images/dice5.svg",
+        "./images/dice6.svg",
+      ];
+
+      let diceImg = document.getElementById("diceImg");
+
+      function rollDice() {
+        let min = 1;
+        let max = 7;
+
+        let randomValue = Math.floor(Math.random() * (max - min)) + min;
+
+        diceImg.classList.add("rotate");
+
+        setTimeout(()=>{
+              if (randomValue == 1) {
+          diceImg.src = "./images/dice1.svg";
+        } else if (randomValue == 2) {
+          diceImg.src = "./images/dice2.svg";
+        } else if (randomValue == 3) {
+          diceImg.src = "./images/dice3.svg";
+        } else if (randomValue == 4) {
+          diceImg.src = "./images/dice4.svg";
+        } else if (randomValue == 5) {
+          diceImg.src = "./images/dice5.svg";
+        } else {
+          diceImg.src = "./images/dice6.svg";
+        }
+
+        diceImg.classList.remove("rotate");
+        },500);
+      }
+    </script>
+  </body>
+</html>
